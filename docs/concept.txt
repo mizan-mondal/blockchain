@@ -1,0 +1,261 @@
+================================================================================
+
+PAGE 1
+
+================================================================================
+
+
+
+1. 
+
+   (Node 1) -------- (N2)      We'll create multiple nodes
+
+      |               |        that can communicate with
+
+   (N3) ------------ (N4)      each other.
+
+                       |
+
+                       +---> initially can be ran
+
+                             in a laptop, later moved
+
+                             to separate devices.
+
+
+
+   * No central ledger controlling
+
+     server ------------^
+
+
+
+
+
+2. User Wallet -
+
+   +-> Wall addr : A123 | B238
+
+   +-> Public key
+
+   +-> Private key
+
+   +-> Balance   : 500 token | 200 tok
+
+   +-> Transaction history.
+
+
+
+
+
+3. Our transaction system
+
+   when transaction is initiated
+
+   A -> B : 50 t
+
+   |
+
+   +-> System creates -> T id : TXY123
+
+                      -> S : A
+
+                         R : B
+
+                         Amount : 50
+
+                         Ts : 
+
+                         Sign : 
+
+
+
+   A digitally signs it with his private key.
+
+
+
+
+
+4. Transaction Broadcasting -
+
+   Transaction is not sent to the central dB.
+
+
+
+   A
+
+   +-> Node 1 -> [ P2P Network ]
+
+                   |     |     |
+
+                   v     v     v
+
+                  N2    N3    N4
+
+   The others receive the
+
+   transaction
+
+
+
+
+
+================================================================================
+
+PAGE 2
+
+================================================================================
+
+
+
+5. Transaction Validation -
+
+   each node will independently check
+
+   -> sign valid?
+
+   -> sender legitimate?
+
+   -> enough balance to complete tran?
+
+   -> trans^n properly performed / not?
+
+   -> if the trans^n already processed?
+
+   -> any attempt of double spending?
+
+
+
+   * Invalid ones get rejected.
+
+
+
+
+
+6. Trans^n Pool -
+
+                                             [ ]  BC -> New Block * 
+
+   valid but unconfirmed                     [ ]        +-> every T^n (X) /
+
+   t^n sit in a t^n pool,                               Multiple valid T^n
+
+                                                        +-> collected &
+
+   B -> C : 20  }                                           put in the BC.
+
+   A -> B : 50  } ---> enough
+
+   D -> A : 30  }      +-> move to new Block.
+
+
+
+
+
+7.                                                 A [ ]
+
+                                                      |
+
+   Genesis Block                                   B [ ]
+
+   +-> initialized BC.                                |
+
+   +-> starting pt. of the entire chain.              v
+
+
+
+   Block chain identify themselves as the block after
+
+   block with previous hash.
+
+   That's how the blocks are cryptographically linked.
+
+
+
+   Now   T^n pool
+
+       (multiple T^n) ---> block records TS.
+
+                           +-> establishes a chronological
+
+                               order.
+
+
+
+
+
+================================================================================
+
+PAGE 3
+
+================================================================================
+
+
+
+Block - 10                           If someone changes a t^n inside
+
+Hash = ABC123                        b-10, its hash changes
+
+     |                               ABC123 -> IJK999
+
+     v
+
+Block 11                             Now:
+
+Previous Hash = ABC123               B-10
+
+Hash = DEF456                        Actual hash = IJK999
+
+     |                                    |
+
+     v                                    v
+
+Block 12                             B - 11
+
+Previous Hash = DEF456               Previous hash = ABC123
+
+Hash = XYZ789                                        ------
+
+                                                       ^
+
+                                      older fingerprint+
+
+
+
+The chain becomes invalid.
+
+The modification becomes detectable because
+
+the cryptographic links and validation rules
+
+no longer matches.
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+Decentralised distributed transaction system
+
+using edge devices & blockchain
+
+* security - hashing, traditional blockchain
+
+  security, rotating node based authentication
+
+* transaction pooling
+
+* transactions occur in a P2P basis and
+
+  commitment is instantaneous whereas
+
+  DB authentication stays pending.
+
+* Updated info. stays within the connected
+
+  mesh.
+
+--------------------------------------------------------------------------------
+
+needs - a compact DB transfer system.

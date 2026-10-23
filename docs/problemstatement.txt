@@ -1,0 +1,20 @@
+Project Title:
+Decentralized Mesh-Based Transaction Architecture using Dynamic Time-Bound Hash Authentication and Asynchronous Edge Synchronization  
+
+Primary Problem Statement: 
+Traditional centralized transaction systems rely heavily on persistent cloud connectivity and centralized database authentication, introducing single points of failure, latency bottlenecks, and vulnerability to network disruption in edge environments. While decentralized blockchain networks offer trustless operation, their standard consensus mechanisms incur high computational overhead and delay transaction finality—making instant local transactions on resource-constrained edge devices impractical. Furthermore, static authentication tokens and long-lived keys during peer-to-peer (P2P) transfers remain highly vulnerable to replay, interception, and man-in-the-middle attacks.
+  
+To resolve these limitations, this project develops a decentralized, edge-native distributed transaction system. The architecture enforces security through dynamic, 1-minute rotating hash authentication codes for every transaction window, decoupling immediate peer-to-peer (P2P) transaction commitment from deferred database verification. By maintaining pending authentication pools and synchronizing state updates through a compact database transfer protocol within a localized mesh network, the system achieves zero-latency local transaction execution without sacrificing cryptographic security.
+  
+Detailed Breakdown of the Problem & Solution
+1. Security & Authentication (The Rotating Hash)
+The Challenge: Static credentials or standard public-key signatures transmitted over P2P edge connections can be intercepted and replayed within vulnerable network windows.  
+The Solution: Implementing time-bound, auto-rotating cryptographic hashes (refreshing every 60 seconds) that act as short-lived single-use transaction authorization tokens. Even if a hash is intercepted, it becomes mathematically invalid in the next minute cycle.  
+
+2. Transaction Latency on Edge Devices
+The Challenge: Waiting for full blockchain ledger consensus or cloud DB confirmation causes unacceptable delays during real-time, point-to-point transfers on low-resource hardware.  
+The Solution: Decoupling the workflow into two phases: instantaneous P2P commitment (local state update) and asynchronous database authentication (queued in a transaction pool until mesh/DB sync occurs).  
+
+3. Resource & Bandwidth Efficiency
+The Challenge: Edge devices have constrained memory, power, and storage, making full-ledger replication unviable.  
+The Solution: A compact DB transfer system designed specifically to propagate minimal, differential updates within the local mesh network rather than broadcasting bulky, full-chain blocks.
